@@ -3,21 +3,24 @@
 namespace GrinWay\WebApp\Trait\Doctrine;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Serializer\Annotation\Groups;
 use GrinWay\Service\Service\CarbonService;
 
 trait CreatedAt
 {
-    #[ORM\Column(nullable: false)]
-    protected ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: false)]
+    protected ?\DateTimeInterface $createdAt = null;
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): void
+    public function setCreatedAt(): static
     {
         $this->createdAt = CarbonService::getNow();
+		
+		return $this;
     }
 }

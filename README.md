@@ -109,6 +109,7 @@ In your `%kernel.project_dir%/config/services.yaml`
 services:
     _defaults:
         bind:
+            # USES NOT DEFAULT BUS: \GrinWay\WebApp\Type\Messenger\BusTypes::QUERY_BUS
             $get: '@grin_way_web_app.messenger.query'
 ```
 
@@ -120,9 +121,9 @@ services:
 namespace App\Messenger\<Topic>\Query;
 
 // Implementing that says that this message has 'sync://' transport
-use GrinWay\WebApp\Contract\Messenger\QueryInterface;
+use GrinWay\WebApp\Contract\Messenger\HasSyncTransportInterface;
 
-class < MessageName > implements QueryInterface
+class <MessageName> implements HasSyncTransportInterface
 {
     //...
 }
@@ -136,16 +137,19 @@ class < MessageName > implements QueryInterface
 namespace App\Messenger\Test\Query;
 
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use GrinWay\WebApp\Type\Messenger\BusTypes;
 
-#[AsMessageHandler]
+#[AsMessageHandler(
+    bus: BusTypes::QUERY_BUS,
+)]
 class ListUsersHandler
 {
     public function __construct(
-        protected readonly < MyServiceClass > $myService,
+        protected readonly <MyServiceClass> $myService,
     ) {
     }
 
-    public function __invoke( < MessageName > $query): mixed
+    public function __invoke(<MessageName> $query): mixed
     {
         return $this->myService->doSomething();
     }
@@ -167,7 +171,7 @@ class HomeController
     ): Response {
 
         // Gets the result of your handler
-        $resultOfYourHandler = $get(new() < MessageName >);
+        $resultOfYourHandler = $get(new <MessageName>);
     }
 }
 ```
