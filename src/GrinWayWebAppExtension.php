@@ -18,8 +18,9 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use GrinWay\WebApp\EventListener\Doctrine\PreUpdateEventLisener;
 use GrinWay\WebApp\EventListener\Doctrine\PrePersistEventLisener;
 use GrinWay\WebApp\Service\Messenger\Query;
-use GrinWay\WebApp\Contract\Messenger\QueryInterface;
+use GrinWay\WebApp\Contract\Messenger\HasSyncTransportInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use GrinWay\WebApp\Type\Messenger\BusTypes;
 
 class GrinWayWebAppExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
@@ -168,7 +169,7 @@ class GrinWayWebAppExtension extends ConfigurableExtension implements PrependExt
                 ),
                 'class' => Query::class,
                 'args' => [
-                    '$messageBus' => new Reference('messenger.bus.default'),
+                    '$messageBus' => new Reference(BusTypes::QUERY_BUS),
                 ],
                 'tags' => [],
                 'isAutowired' => false,
@@ -203,8 +204,10 @@ class GrinWayWebAppExtension extends ConfigurableExtension implements PrependExt
     {
         /*
         $container
-            ->registerForAutoconfiguration(<interface>::class)
-            ->addTag('messenger.message_handler')
+            ->registerForAutoconfiguration('')
+            ->addTag('messenger.message_handler', [
+				'bus' => BusTypes::QUERY_BUS,
+			])
         ;
         */
     }
