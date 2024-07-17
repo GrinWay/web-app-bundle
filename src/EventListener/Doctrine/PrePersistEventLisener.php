@@ -3,6 +3,7 @@
 namespace GrinWay\WebApp\EventListener\Doctrine;
 
 use Doctrine\ORM\Event\PrePersistEventArgs;
+use GrinWay\Service\Service\CarbonService;
 
 class PrePersistEventLisener
 {
@@ -16,7 +17,7 @@ class PrePersistEventLisener
         $ojb = $args->getObject();
 
         if (\method_exists($ojb, 'setCreatedAt')) {
-            $ojb->setCreatedAt();
+            $ojb->setCreatedAt(CarbonService::getNow(isImmutable: true));
         }
     }
 }
