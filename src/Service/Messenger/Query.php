@@ -4,7 +4,7 @@ namespace GrinWay\WebApp\Service\Messenger;
 
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
-use GrinWay\WebApp\Contract\Messenger\HasSyncTransportInterface;
+use GrinWay\WebApp\Contract\Messenger\MessageHasSyncTransportInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use GrinWay\WebApp\Type\Messenger\BusTypes;
 
@@ -18,7 +18,7 @@ class Query
     ) {
     }
 
-    public function __invoke(HasSyncTransportInterface $query): mixed
+    public function __invoke(MessageHasSyncTransportInterface $query): mixed
     {
         return $this->handle($query);
     }

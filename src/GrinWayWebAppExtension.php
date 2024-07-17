@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use GrinWay\WebApp\EventListener\Doctrine\PreUpdateEventLisener;
 use GrinWay\WebApp\EventListener\Doctrine\PrePersistEventLisener;
 use GrinWay\WebApp\Service\Messenger\Query;
-use GrinWay\WebApp\Contract\Messenger\HasSyncTransportInterface;
+use GrinWay\WebApp\Contract\Messenger\MessageHasSyncTransportInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use GrinWay\WebApp\Type\Messenger\BusTypes;
 

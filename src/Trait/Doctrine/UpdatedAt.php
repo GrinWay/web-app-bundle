@@ -17,9 +17,9 @@ trait UpdatedAt
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(): static
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt = null): static
     {
-        $this->updatedAt = CarbonService::getNow(isImmutable: true);
+        $this->updatedAt = $updatedAt ?: CarbonService::getNow(isImmutable: true);
 		
 		return $this;
     }

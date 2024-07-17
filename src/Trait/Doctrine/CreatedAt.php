@@ -17,9 +17,9 @@ trait CreatedAt
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): static
+    public function setCreatedAt(?\DateTimeInterface $createdAt = null): static
     {
-        $this->createdAt = CarbonService::getNow();
+        $this->createdAt = $createdAt ?: CarbonService::getNow();
 		
 		return $this;
     }
