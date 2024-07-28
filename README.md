@@ -141,6 +141,7 @@ use GrinWay\WebApp\Type\Messenger\BusTypes;
 
 #[AsMessageHandler(
     bus: BusTypes::QUERY_BUS,
+    fromTransport: 'grin_way_web_app.sync',
 )]
 class ListUsersHandler
 {
