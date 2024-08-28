@@ -3,6 +3,7 @@
 namespace GrinWay\WebApp\EventListener\Doctrine;
 
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use GrinWay\Service\Service\CarbonService;
 
 class PreUpdateEventLisener
 {
@@ -16,7 +17,7 @@ class PreUpdateEventLisener
         $ojb = $args->getObject();
 
         if (\method_exists($ojb, 'setUpdatedAt')) {
-            $ojb->setUpdatedAt();
+            $ojb->setUpdatedAt(CarbonService::getNow(isImmutable: true));
         }
     }
 }

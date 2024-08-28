@@ -28,7 +28,7 @@ parameters:
         transports:
             grin_way_web_app.sync: 'sync://'
         routing:
-            'GrinWay\WebApp\Contract\Messenger\HasSyncTransportInterface': grin_way_web_app.sync
+            'GrinWay\WebApp\Contract\Messenger\MessageHasSyncTransportInterface': grin_way_web_app.sync
     ###< MESSENGER ###
 
     ###< DEFAULT ###

@@ -4,8 +4,6 @@ namespace GrinWay\WebApp\Trait\Doctrine;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
-use Symfony\Component\Serializer\Annotation\Groups;
-use GrinWay\Service\Service\CarbonService;
 
 trait UpdatedAt
 {
@@ -17,9 +15,9 @@ trait UpdatedAt
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(): static
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt = null): static
     {
-        $this->updatedAt = CarbonService::getNow(isImmutable: true);
+        $this->updatedAt = $updatedAt;
 		
 		return $this;
     }

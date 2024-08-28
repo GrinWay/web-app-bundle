@@ -121,9 +121,9 @@ services:
 namespace App\Messenger\<Topic>\Query;
 
 // Implementing that says that this message has 'sync://' transport
-use GrinWay\WebApp\Contract\Messenger\HasSyncTransportInterface;
+use GrinWay\WebApp\Contract\Messenger\MessageHasSyncTransportInterface;
 
-class <MessageName> implements HasSyncTransportInterface
+class <MessageName> implements MessageHasSyncTransportInterface
 {
     //...
 }
@@ -141,6 +141,7 @@ use GrinWay\WebApp\Type\Messenger\BusTypes;
 
 #[AsMessageHandler(
     bus: BusTypes::QUERY_BUS,
+    fromTransport: 'grin_way_web_app.sync',
 )]
 class ListUsersHandler
 {

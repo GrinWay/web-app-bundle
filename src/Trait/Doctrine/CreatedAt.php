@@ -4,8 +4,6 @@ namespace GrinWay\WebApp\Trait\Doctrine;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
-use Symfony\Component\Serializer\Annotation\Groups;
-use GrinWay\Service\Service\CarbonService;
 
 trait CreatedAt
 {
@@ -17,9 +15,9 @@ trait CreatedAt
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): static
+    public function setCreatedAt(?\DateTimeInterface $createdAt = null): static
     {
-        $this->createdAt = CarbonService::getNow();
+        $this->createdAt = $createdAt;
 		
 		return $this;
     }
