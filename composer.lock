@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "373667b9a49b92c0586e54fe1197a04e",
+    "content-hash": "90a2a874547b9f704e0705bbdbf477c0",
     "packages": [
         {
             "name": "behat/mink",
@@ -134,16 +134,16 @@
         },
         {
             "name": "grinway/service-bundle",
-            "version": "dev-test_traits",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrinWay/service-bundle.git",
-                "reference": "e565bb94d4c24c47fac9a188c2af79d04ab94165"
+                "reference": "1d91dd0844b85633bd5a1a3e032aff56566dada8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrinWay/service-bundle/zipball/e565bb94d4c24c47fac9a188c2af79d04ab94165",
-                "reference": "e565bb94d4c24c47fac9a188c2af79d04ab94165",
+                "url": "https://api.github.com/repos/GrinWay/service-bundle/zipball/1d91dd0844b85633bd5a1a3e032aff56566dada8",
+                "reference": "1d91dd0844b85633bd5a1a3e032aff56566dada8",
                 "shasum": ""
             },
             "require": {
@@ -200,9 +200,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrinWay/service-bundle/issues",
-                "source": "https://github.com/GrinWay/service-bundle/tree/test_traits"
+                "source": "https://github.com/GrinWay/service-bundle/tree/v1.2.0"
             },
-            "time": "2025-02-04T10:30:38+00:00"
+            "time": "2025-02-04T13:00:22+00:00"
         },
         {
             "name": "guzzlehttp/uri-template",
@@ -7142,9 +7142,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "grinway/service-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

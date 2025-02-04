@@ -1,7 +1,7 @@
 {
   "name": "grinway/web-app-bundle",
   "type": "symfony-bundle",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Commonly used tools for particularly a web symfony app",
   "keywords": [
     "grinway",
@@ -58,7 +58,7 @@
     "guzzlehttp/uri-template": "^1.0",
     "symfony/ux-turbo": "^2.22",
     "symfony/cache": "^7.2",
-    "grinway/service-bundle": "dev-test_traits"
+    "grinway/service-bundle": "^1.2.0"
   },
   "config": {
     "allow-plugins": {
