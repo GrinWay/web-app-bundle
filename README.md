@@ -14,3 +14,5 @@ GrinWay/web-app-bundle
 ### 🔰 [Installation](https://github.com/GrinWay/web-app-bundle/blob/main/docs/installation.md)
 
 ### 🔗 [Reference](https://github.com/GrinWay/web-app-bundle/blob/main/docs/reference.md)
+
+### ✅ [Supported versions](https://github.com/GrinWay/web-app-bundle/blob/main/docs/supported-versions.md)
