@@ -1,7 +1,7 @@
 GrinWay/web-app-bundle
 ======
-[![Latest Stable Version](https://poser.pugx.org/GrinWay/service-bundle/v)](//packagist.org/packages/GrinWay/service-bundle)
-[![Total Downloads](https://poser.pugx.org/GrinWay/service-bundle/downloads)](//packagist.org/packages/GrinWay/service-bundle)
+[![Latest Stable Version](https://poser.pugx.org/GrinWay/web-app-bundle/v)](//packagist.org/packages/GrinWay/web-app-bundle)
+[![Total Downloads](https://poser.pugx.org/GrinWay/web-app-bundle/downloads)](//packagist.org/packages/GrinWay/web-app-bundle)
 
 <h2>This bundle supplies tools for a web symfony app (when it's strongly connected with web browser application)</h2>
 
