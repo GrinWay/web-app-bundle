@@ -5,14 +5,15 @@ Reference
 
 Extend your test classes to `automatically` use their tests
 
-| Test case class            | It tests         |
-|----------------------------|------------------|
-| [AbstractWebAppTestCase]() | `All GET routes` |
+| Test case class                                                                                                | It tests         |
+|----------------------------------------------------------------------------------------------------------------|------------------|
+| [AbstractWebAppTestCase](https://github.com/GrinWay/web-app-bundle/blob/main/tests/AbstractWebAppTestCase.php) | `All GET routes` |
 
 > NOTE: You can add the `when@test: *when_dev` line (see below example)
 > `AbstractWebAppTestCase::testExplicitlyDescribedGetMethodRoutesWithoutParametersRequestedSuccessfullyAndNoOutput`
 > <br> will show a different error message when test was not passed for `dump()` or `echo`
-> <br>but that's not essential if it's not important for you to see exactly when it was `dump()` or just `echo`, `var_dump()`... don't write this line
+> <br>but that's not essential if it's not important for you to see exactly when it was `dump()` or just `echo`,
+`var_dump()`... don't write this line
 
 Example:
 
