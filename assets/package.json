@@ -8,7 +8,7 @@
     "symfony": {
         "controllers": {
             "web-app": {
-                "main": "dist/web-app_controller.js",
+                "main": "dist/controller.js",
                 "name": "grinway-web-app",
                 "webpackMode": "eager",
                 "fetch": "eager",
