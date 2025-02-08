@@ -1,11 +1,13 @@
 <?php
 
-namespace GrinWay\WebApp\Tests;
+namespace GrinWay\WebApp\Tests\Functional;
 
 use GrinWay\Service\Test\Trait\HasBufferTest;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\RouterInterface;
 use Zenstruck\Browser\Test\HasBrowser;
 
@@ -21,11 +23,18 @@ abstract class AbstractWebAppTestCase extends WebTestCase
 {
     use HasBrowser, HasBufferTest;
 
-    protected RouterInterface $routerService;
+    protected static RouteCollection $routeCollection;
+
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+        self::setUpBeforeClassProperties();
+    }
 
     protected function setUp(): void
     {
         parent::setUp();
+        self::bootKernel();
         $this->setUpProperties();
     }
 
@@ -41,7 +50,7 @@ abstract class AbstractWebAppTestCase extends WebTestCase
     public function testExplicitlyDescribedGetMethodRoutesWithoutParametersRequestedSuccessfullyAndNoOutput()
     {
         \ob_start();
-        foreach ($this->routerService->getRouteCollection() as $router) {
+        foreach (self::$routeCollection as $router) {
             /** @var Route $router */
             $path = $router->getPath();
 
@@ -60,11 +69,12 @@ abstract class AbstractWebAppTestCase extends WebTestCase
                 }
 
                 $uri = $router->getPath();
+
                 $profile = $this->browser()
-                    ->withProfiling()
+                    ->withProfiling() // $this->withProfiling() is called!
                     ->visit($uri)
                     ->assertSuccessful()
-                    ->profile()//
+                    ->profile()// Don't know why but: RuntimeException: Profiler not enabled for this request. Try calling ->withProfiling() before the request.
                 ;
 
                 $message = \sprintf(
@@ -73,7 +83,7 @@ abstract class AbstractWebAppTestCase extends WebTestCase
                     $path,
                 );
                 self::assertOutputBufferWasNotUsed($message);
-                if ($profile->hasCollector($key = 'dump')) {
+                if ($profile instanceof Profile && $profile->hasCollector($key = 'dump')) {
                     $dumpsCount = $profile
                         ->getCollector($key)
                         ->getDumpsCount()//
@@ -95,12 +105,17 @@ abstract class AbstractWebAppTestCase extends WebTestCase
     }
 
     /**
-     * Helper
-     *
      * @internal
      */
-    private function setUpProperties()
+    protected static function setUpBeforeClassProperties()
     {
-        $this->routerService = self::getContainer()->get('router');
+        self::$routeCollection = self::getContainer()->get('router')->getRouteCollection();
+    }
+
+    /**
+     * @internal
+     */
+    protected function setUpProperties()
+    {
     }
 }

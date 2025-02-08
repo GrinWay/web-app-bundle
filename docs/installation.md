@@ -11,6 +11,9 @@ composer require grinway/web-app-bundle
 
 If you didn't get these configuration files just copy them from `@GrinWayService/.install/symfony/config`
 
+> **WARNING**: `2.` and `3.` contain `!IMPORTANT TO DO!`
+> <br>**essentially** do this
+
 2. Add this to your `bundles.php`
 
 ```php
@@ -19,28 +22,33 @@ If you didn't get these configuration files just copy them from `@GrinWayService
 // %kernel.project_dir%/config/bundles.php
 return [
     GrinWay\WebApp\GrinWayWebAppBundle::class => ['all' => true],
+    
+    // !IMPORTANT TO DO!
     // If you have DebugBundle ADD THIS: 'test' => true
     // It's for AbstractWebAppTestCase class of this bundle
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['test' => true, 'dev' => true],
 ];
 ```
 
-[//]: # (3. Execute &#40;for `node_modules` dependencies&#41;)
+3. Fix the default `%kernel.project_dir%/config/packages/web_profiler.yaml` file:
 
-[//]: # (```console)
-[//]: # (yarn install --force)
-[//]: # (```)
+```yaml
+when@dev:
+    web_profiler:
+        toolbar: true
+        intercept_redirects: false
 
-[//]: # (3. Set all ENV variables of this bundle &#40;required by the `config/packages/grinway_web_app.yaml` file&#41;:)
-[//]: # ()
-[//]: # (```env)
-[//]: # (###> grinway/web-app-bundle ###)
-[//]: # ()
-[//]: # (#)
-[//]: # (# to be more secure)
-[//]: # (# set this to the symfony secrets https://symfony.com/doc/current/configuration/secrets.html)
-[//]: # (#)
-[//]: # (APP_CURRENCY_FIXER_API_KEY=)
-[//]: # ()
-[//]: # (###< grinway/web-app-bundle ###)
-[//]: # (```)
+    framework:
+        profiler:
+            only_exceptions: false
+            collect_serializer_data: true
+
+when@test:
+    web_profiler:
+        toolbar: false
+        intercept_redirects: false
+
+    framework:
+        # !IMPORTANT TO DO! (collect: true)
+        profiler: { enabled: true, collect: true }
+```

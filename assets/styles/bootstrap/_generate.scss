@@ -1,0 +1,24 @@
+@each $k, $v in $theme-colors {
+	/**
+	 * Theme
+	 */
+	.theme-#{$k} {
+		
+		@include bg-color-contrast($v);
+
+		/**
+		 * Force theme color
+		 */
+		.theme-text {
+			color: color-contrast($v);
+		}
+		
+		/**
+		 * Force theme background-color
+		 */
+		.theme-bg {
+			background-color: $v;
+		}
+		
+	}
+}

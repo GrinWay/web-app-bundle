@@ -1,7 +1,7 @@
 {
   "name": "grinway/web-app-bundle",
   "type": "symfony-bundle",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Commonly used tools for particularly a web symfony app",
   "keywords": [
     "grinway",
@@ -14,7 +14,8 @@
   "require-dev": {
     "symfony/phpunit-bridge": "^7.2",
     "phpunit/phpunit": "11.4",
-    "symfony/test-pack": "^1.0"
+    "symfony/test-pack": "^1.0",
+    "symfony/maker-bundle": "^1.62"
   },
   "authors": [
     {
@@ -58,7 +59,8 @@
     "guzzlehttp/uri-template": "^1.0",
     "symfony/ux-turbo": "^2.22",
     "symfony/cache": "^7.2",
-    "grinway/service-bundle": "^1.2.0"
+    "grinway/service-bundle": "^1.2.0",
+    "symfony/var-dumper": "^7.2"
   },
   "config": {
     "allow-plugins": {

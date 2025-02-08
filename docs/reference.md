@@ -5,9 +5,18 @@ Reference
 
 Extend your test classes to `automatically` use their tests
 
-| Test case class                                                                                                | It tests         |
-|----------------------------------------------------------------------------------------------------------------|------------------|
-| [AbstractWebAppTestCase](https://github.com/GrinWay/web-app-bundle/blob/main/tests/AbstractWebAppTestCase.php) | `All GET routes` |
+| Test case class                                                                                                           | It tests         |
+|---------------------------------------------------------------------------------------------------------------------------|------------------|
+| [AbstractWebAppTestCase](https://github.com/GrinWay/web-app-bundle/blob/main/tests/Functional/AbstractWebAppTestCase.php) | `All GET routes` |
+
+#### Your `phpunit.xml.dist` must be like:
+
+```
+<extensions>
+    <bootstrap class="Zenstruck\Foundry\PHPUnit\FoundryExtension"/>
+    <bootstrap class="Zenstruck\Browser\Test\BrowserExtension"/>
+</extensions>
+```
 
 > NOTE: You can add the `when@test: *when_dev` line (see below example)
 > `AbstractWebAppTestCase::testExplicitlyDescribedGetMethodRoutesWithoutParametersRequestedSuccessfullyAndNoOutput`

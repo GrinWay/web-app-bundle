@@ -198,6 +198,11 @@ class GrinWayWebAppBundle extends AbstractBundle
         $container->import($this->absPath('config/packages/framework_validation.yaml'));
         $container->import($this->absPath('config/packages/framework_test.yaml'));
         $container->import($this->absPath('config/packages/framework_cache.yaml'));
+        $container->import($this->absPath('config/packages/framework_profiler.yaml'));
+        /*
+         * If you do, you influence main project!
+         */
+//        $container->import($this->absPath('config/packages/maker.yaml'));
     }
 
     /**
