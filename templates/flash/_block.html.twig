@@ -1,0 +1,7 @@
+{%- block alert -%}
+	<twig:grinway:Alert
+		{{ ...attributes.nested('alert').defaults({ alert_type: flashObject.type }) }}
+	>
+		{{- flash -}}
+	</twig:grinway:Alert>
+{%- endblock -%}

@@ -77,5 +77,9 @@ $utilities: map-merge(
         class: text,
         values: transparent,
       ),
+      grinway-cursor: (
+        property: cursor,
+        values: pointer,
+      ),
     ),
 );

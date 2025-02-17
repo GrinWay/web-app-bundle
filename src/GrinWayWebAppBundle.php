@@ -199,6 +199,7 @@ class GrinWayWebAppBundle extends AbstractBundle
         $container->import($this->absPath('config/packages/framework_test.yaml'));
         $container->import($this->absPath('config/packages/framework_cache.yaml'));
         $container->import($this->absPath('config/packages/framework_profiler.yaml'));
+        $container->import($this->absPath('config/packages/twig_component.yaml'));
         /*
          * If you do, you influence main project!
          */

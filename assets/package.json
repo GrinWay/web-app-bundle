@@ -3,13 +3,12 @@
     "description": "",
     "license": "MIT",
     "version": "0.0.0",
-    "main": "dist/controller.js",
     "scripts": {},
     "symfony": {
         "controllers": {
-            "web-app": {
-                "main": "dist/controller.js",
-                "name": "grinway-web-app",
+            "transition": {
+                "main": "dist/transition.js",
+                "name": "grinway-web-app--transition",
                 "webpackMode": "eager",
                 "fetch": "eager",
                 "autoimport": {
@@ -24,6 +23,7 @@
     },
     "peerDependencies": {
         "@hotwired/stimulus": "^3.0.0",
+        "stimulus-use": "^0.52.3",
         "@grinway/type-checker": "^1.0.0",
         "@grinway/theme-manager": "^1.0.0"
 	},

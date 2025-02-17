@@ -1,0 +1,17 @@
+services:
+
+    _defaults:
+        autoconfigure: false
+        autowire: false
+
+    GrinWay\WebApp\Twig\Component\Flash:
+        class: 'GrinWay\WebApp\Twig\Component\Flash'
+        tags:
+        -   name: 'twig.component'
+            template: '@GrinWayWebApp/components/Flash.html.twig'
+
+    GrinWay\WebApp\Twig\Component\Alert:
+        class: 'GrinWay\WebApp\Twig\Component\Alert'
+        tags:
+        -   name: 'twig.component'
+            template: '@GrinWayWebApp/components/Alert.html.twig'
