@@ -15,6 +15,8 @@ GrinWay/web-app-bundle
 
 ### 🔗 [Reference](https://github.com/GrinWay/web-app-bundle/blob/main/docs/reference.md)
 
+### 🌀 [Twig component](https://github.com/GrinWay/web-app-bundle/blob/main/docs/twig-component.md)
+
 ### 🎮 [UX stimulus controllers](https://github.com/GrinWay/web-app-bundle/blob/main/docs/ux-stimulus-controllers.md)
 
 ### ✅ [Supported versions](https://github.com/GrinWay/web-app-bundle/blob/main/docs/supported-versions.md)

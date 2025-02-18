@@ -30,6 +30,6 @@ Usage:
 >Hello Grinway Alert</twig:grinway:Alert>
 ```
 
-### `twig:grinway:Flash`
-
-Usage:
+[//]: # (### `twig:grinway:Flash`)
+[//]: # ()
+[//]: # (Usage:)
