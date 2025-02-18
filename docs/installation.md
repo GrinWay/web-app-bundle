@@ -52,3 +52,25 @@ when@test:
         # !IMPORTANT TO DO! (collect: true)
         profiler: { enabled: true, collect: true }
 ```
+
+4. Execute (for `node_modules` dependencies)
+
+```console
+yarn install --force
+```
+
+Ensure you have in your `%kernel.project_dir%/assets/controllers.json` what typed below:
+
+```json
+"@grinway/web-app-bundle": {
+    "transition": {
+        "fetch": "eager",
+        "autoimport": {
+            "@grinway/web-app-bundle/dist/style/transition.css": true
+        },
+        "enabled": true
+    }
+},
+```
+
+If precipice didn't insert it automatically copy and paste it

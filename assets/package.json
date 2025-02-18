@@ -1,6 +1,6 @@
 {
     "name": "@grinway/web-app",
-    "description": "",
+    "description": "Most common stimulus controllers",
     "license": "MIT",
     "version": "0.0.0",
     "scripts": {},
@@ -12,7 +12,7 @@
                 "webpackMode": "eager",
                 "fetch": "eager",
                 "autoimport": {
-                    "@grinway/web_app/dist/style/main.scss": false
+                    "@grinway/web-app-bundle/dist/style/transition.css": true
                 },
                 "enabled": true
             }
@@ -25,7 +25,7 @@
         "@hotwired/stimulus": "^3.0.0",
         "stimulus-use": "^0.52.3",
         "@grinway/type-checker": "^1.0.0",
-        "@grinway/theme-manager": "^1.0.0"
+        "@grinway/theme-manager": "^2.0.0"
 	},
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",

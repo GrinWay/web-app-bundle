@@ -1,78 +1,68 @@
 {# Usage:
-    <twig:grinway:alert alert_type="" size="" alert_alignment="" alert_position="" alert:ATTRIBUTE="">
-	    CONTENT
-	</twig:grinway:alert>
 #}
 
-{%- props
-	alert_type = 'primary',
-	alert_size = 'sm',
-	alert_alignment = 'left',
-	alert_position = 'normal',
-	
-	alert_init_shown = "true",
-	alert_will_leave = "false",
-	alert_remove_after_leave = "true",
-	alert_style = 'fade',
-	alert_disappear_in_ms = 10000,
--%}
-
-{%- set base = 'alert my-0' -%}
 {% set class = cva({
-	base,
-	variants: {
-		alert_type: {
-			primary: 'alert-primary',
-			secondary: 'alert-secondary',
-			success: 'alert-success',
-			danger: 'alert-danger',
-			warning: 'alert-warning',
-			info: 'alert-info',
-			light: 'alert-light',
-			dark: 'alert-dark',
-		},
-		alert_alignment: {
-			left: 'text-left',
-			center: 'text-center',
-			right: 'text-right',
-		},
-		alert_size: {
-			lg: 'font-size-lg',
-			md: 'font-size-md',
-			sm: 'small',
-			normal: '',
-		},
-		alert_position: {
-			top: 'position-absolute top-0 start-0 end-0',
-			sticky: 'position-sticky top-0 start-0 end-0',
-			normal: '',
-		},
-	},
-	compoundVariants: [
-		{
-			alert_type: ['danger', 'warning'],
-			class: 'h5',
-		},
-		{
-			alert_size: ['sm'],
-			class: 'p-2',
-		},
-	],
+    base: this.base,
+    variants: {
+        'this.type': {
+            primary: 'alert-primary',
+            secondary: 'alert-secondary',
+            success: 'alert-success',
+            danger: 'alert-danger',
+            warning: 'alert-warning',
+            info: 'alert-info',
+            light: 'alert-light',
+            dark: 'alert-dark',
+        },
+        'this.alignment': {
+            left: 'text-left',
+            center: 'text-center',
+            right: 'text-right',
+        },
+        'this.size': {
+            lg: 'font-size-lg',
+            md: 'font-size-md',
+            sm: 'small',
+            normal: '',
+        },
+        'this.position': {
+            top: 'position-absolute top-0 start-0 end-0',
+            sticky: 'position-sticky top-0 start-0 end-0',
+            normal: '',
+        },
+    },
+    compoundVariants: [
+        {
+            'this.type': ['danger', 'warning'],
+            class: 'h5',
+        },
+        {
+            'this.size': ['sm'],
+            class: 'p-2',
+        },
+    ],
 }) %}
 
 <div
-	class="{{- class.apply({alert_type, alert_size, alert_alignment, alert_position}, attributes.render('class')) -}}"
-	{{ attributes.defaults({
-		role: 'alert',
-		'data-controller': 'grinway-web-app--transition',
-		'data-grinway-web-app--transition-init-shown-value': alert_init_shown,
-		'data-grinway-web-app--transition-style-value': alert_style,
-		'data-grinway-web-app--transition-disappear-in-ms-value': alert_disappear_in_ms,
-		'data-grinway-web-app--transition-will-leave-value': alert_will_leave,
-		'data-grinway-web-app--transition-remove-after-leave-value': alert_remove_after_leave,
-	}) }}
+        class="{{- class.apply({
+            'this.type': this.type,
+            'this.size': this.size,
+            'this.alignment': this.alignment,
+            'this.position': this.position,
+        }, attributes.render('class')) -}}"
+
+        {{ attributes.defaults({
+            role: 'alert',
+            'data-controller': 'grinway-web-app--transition',
+            'data-grinway-web-app--transition-target': 'element',
+            'data-grinway-web-app--transition-init-shown-value': this.initShown ? 1 : 0,
+            'data-grinway-web-app--transition-style-value': this.style,
+            'data-grinway-web-app--transition-disappear-in-ms-value': this.disappearInMs,
+            'data-grinway-web-app--transition-will-leave-value': this.willLeave ? 1 : 0,
+            'data-grinway-web-app--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
+        }) }}
 >
-	{%- block content -%}
-		EMPTY ALERT
-	{%- endblock content -%}
+    {%- block content -%}
+        EMPTY ALERT
+    {%- endblock content -%}
 </div>

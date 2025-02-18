@@ -1,7 +1,12 @@
 import { useTransition as stimulusUseTranslation } from 'stimulus-use';
 
 /**
- * Usage
+ * Usage:
+ *
+ * It works with the help of basic css classes, like: "fade", "slide", "flash", "rotate" described in:
+ * "@grinway/web-app-bundle/dist/style/transition.css"
+ *
+ * Definitely if you add yours and use your style name it will work the same
  */
 export function useTransition(
 	controller,

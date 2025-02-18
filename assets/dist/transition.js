@@ -2,36 +2,9 @@ import { Controller } from '@hotwired/stimulus'
 import { useTransition } from './stimulus-use/useTransition.js'
 
 /**
- * Usage
+ *
  */
-export default class extends Controller {
-
-    static values = {
-        initShown: {
-            type: Boolean,
-            default: true,
-        },
-        willLeave: {
-            type: Boolean,
-            default: true,
-        },
-        removeAfterLeave: {
-            type: Boolean,
-            default: true,
-        },
-        style: {
-            type: String,
-            default: 'fade',
-        },
-        disappearInMs: {
-            type: Number,
-            default: 3000,
-        },
-    }
-
-    static targets = [
-        'element',
-    ]
+class default_1 extends Controller {
 
     #isUseTransitionInitialized = false
     #isProcessEnabled = false
@@ -40,11 +13,7 @@ export default class extends Controller {
      * Target getter
      */
     get _element() {
-        return this.hasElementTarget ? this.elementTarget : undefined
-    }
-
-    connect() {
-        alert(this.disappearInMsValue)
+        return this.hasElementTarget ? this.elementTarget : null
     }
 
     elementTargetConnected(element) {
@@ -63,16 +32,18 @@ export default class extends Controller {
             return true
         }
 
-        if (undefined === this._element) {
+        if (null === this._element) {
             return false
         }
 
         useTransition(this, this.styleValue, {
-            initShown: false,
+            initShown: this.initShownValue,
             element: this._element,
-            hiddenClass: 'd-none',
+            hiddenClass: this.hiddenClassValue,
         })
+
         this.#isUseTransitionInitialized = true
+
         return true
     }
 
@@ -81,8 +52,10 @@ export default class extends Controller {
             return
         }
 
-        if (true === this.initShownValue) {
-            await this.enter()
+        if (false === this.initShownValue) {
+            setTimeout(() => {
+                this.enter()
+            }, 100)
         }
 
         if (true === this.willLeaveValue) {
@@ -95,3 +68,36 @@ export default class extends Controller {
         }
     }
 }
+
+default_1.values = {
+    initShown: {
+        type: Boolean,
+        default: true,
+    },
+    style: {
+        type: String,
+        default: 'fade',
+    },
+    disappearInMs: {
+        type: Number,
+        default: 3000,
+    },
+    willLeave: {
+        type: Boolean,
+        default: true,
+    },
+    removeAfterLeave: {
+        type: Boolean,
+        default: true,
+    },
+    hiddenClass: {
+        type: String,
+        default: 'd-none',
+    },
+}
+
+default_1.targets = [
+    'element',
+]
+
+export { default_1 as default }
