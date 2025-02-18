@@ -6,6 +6,8 @@ services:
 
     GrinWay\WebApp\Twig\Component\Flash:
         class: 'GrinWay\WebApp\Twig\Component\Flash'
+        arguments:
+            $requestStack: '@Symfony\Component\HttpFoundation\RequestStack'
         tags:
         -   name: 'twig.component'
             template: '@GrinWayWebApp/components/Flash.html.twig'

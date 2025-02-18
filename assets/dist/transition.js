@@ -74,14 +74,6 @@ default_1.values = {
         type: Boolean,
         default: true,
     },
-    style: {
-        type: String,
-        default: 'fade',
-    },
-    disappearInMs: {
-        type: Number,
-        default: 3000,
-    },
     willLeave: {
         type: Boolean,
         default: true,
@@ -89,6 +81,14 @@ default_1.values = {
     removeAfterLeave: {
         type: Boolean,
         default: true,
+    },
+    style: {
+        type: String,
+        default: 'fade',
+    },
+    disappearInMs: {
+        type: Number,
+        default: 3000,
     },
     hiddenClass: {
         type: String,

@@ -1,6 +1,4 @@
-{# Usage:
-
-#}
+{# Usage: https://github.com/GrinWay/web-app-bundle/blob/main/docs/twig-component.md #}
 
 {% set class = cva({
     base: this.base,
@@ -29,6 +27,7 @@
         'this.position': {
             top: 'position-absolute top-0 start-0 end-0',
             sticky: 'position-sticky top-0 start-0 end-0',
+            absolute: 'position-absolute top-0 end-0 start-0',
             normal: '',
         },
     },
@@ -61,6 +60,7 @@
             'data-grinway-web-app--transition-disappear-in-ms-value': this.disappearInMs,
             'data-grinway-web-app--transition-will-leave-value': this.willLeave ? 1 : 0,
             'data-grinway-web-app--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
+            'data-grinway-web-app--transition-hidden-class-value': this.hiddenClass,
         }) }}
 >
     {%- block content -%}

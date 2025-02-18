@@ -31,6 +31,8 @@ Usage:
         data-grinway-web-app--transition-will-leave-value="{{ true }}"
         <!-- Optional value -->
         data-grinway-web-app--transition-remove-after-leave-value="{{ true }}"
+        <!-- Optional value -->
+        data-grinway-web-app--transition-hidden-class-value="d-none"
 >
     This element will be smoothly "faded" and removed in 1 second
 </div>

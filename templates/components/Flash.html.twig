@@ -1,101 +1,83 @@
-{# Usage:
-    <body class="position-relative">
-		<twig:grinway:flash
-			alert:class=""
-			alert_size="normal"
-			
-			flash_position="sticky"
-			flash_peek = false // TODO: GRINWAY:FLASH: переместить в класс, реализовать логику, при которой есть возможность не очищать сообщение из flash (для hub->publish допустим чтобы всем отобразился flash)
-		/>
-	</body>
-#}
-
-{%- props
-	flash_position = 'fixed',
-	
-	flash_init_shown = "true",
-	flash_will_leave = "true",
-	flash_remove_after_leave = "true",
-	flash_style = 'fade',
-	flash_disappear_in_ms = 3000,
--%}
+{# Usage: https://github.com/GrinWay/web-app-bundle/blob/main/docs/twig-component.md #}
 
 {%- set class_cva = cva({
-	base: '',
-	variants: {
-		flash_position: {
-			fixed: 'position-fixed top-0 end-0 start-0',
-			sticky: 'position-sticky top-0 end-0 start-0',
-			absolute: 'position-absolute top-0 end-0 start-0',
-			normal: '',
-		},
-	},
+    'this.base': this.base,
+    variants: {
+        'this.position': {
+            fixed: 'position-fixed top-0 end-0 start-0',
+            sticky: 'position-sticky top-0 end-0 start-0',
+            absolute: 'position-absolute top-0 end-0 start-0',
+            normal: '',
+        },
+    },
 }) -%}
 
 <div
-	class="{{ class_cva.apply({flash_position}, attributes.render('class')) }}"
-	{{ attributes.defaults({
-		'data-controller': 'grinway-web-app--transition',
-		'data-grinway-web-app--transition-init-shown-value': flash_init_shown,
-		'data-grinway-web-app--transition-style-value': flash_style,
-		'data-grinway-web-app--transition-disappear-in-ms-value': flash_disappear_in_ms,
-		'data-grinway-web-app--transition-will-leave-value': flash_will_leave,
-		'data-grinway-web-app--transition-remove-after-leave-value': flash_remove_after_leave,
-	}) }}
->
-	{%- if app.session.flashBag.peekAll|length|default(0) > 0 -%}
-	
-		{%- block flash -%}
-			
-			<div
-				data-turbo-temporary
-				{{ stimulus_target('grinway--web-app--transition', 'element') }}
-			>
-				{% for flashObject in [
-					{
-						type:     'success',
-						flashes:  app.flashes(constant('GrinWay\\Service\\Type\\NoteType::NOTICE')),
-					},
-					{
-						type:     'warning',
-						flashes:  app.flashes(constant('GrinWay\\Service\\Type\\NoteType::WARNING')),
-					},
-					{
-						type:     'danger',
-						flashes:  app.flashes(constant('GrinWay\\Service\\Type\\NoteType::ERROR')),
-					},
-					{
-						type:     'secondary',
-						flashes:  app.flashes('secondary'),
-					},
-					{
-						type:     'primary',
-						flashes:  app.flashes,
-					},
-				] %}
-					
-					{%- for flash in flashObject.flashes -%}
-						
-						<div>
-							{% if flash is iterable %}
-							
-								{% set flashes = flash %}
-								{%- for flash in flashes -%}
-									{{ block('alert', '@GrinWayWebApp/flash/_block.html.twig') }}
-								{%- endfor -%}
-							
-							{% else %}
-							
-								{{ block('alert', '@GrinWayWebApp/flash/_block.html.twig') }}
+        class="{{ class_cva.apply({
+            'this.position': this.position,
+        }, attributes.render('class')) }}"
 
-							{% endif %}
-						</div>
-						
-					{%- endfor -%}
-					
-				{% endfor %}
-			</div>
-			
-		{%- endblock -%}
-	{%- endif -%}
+        {{ attributes.defaults({
+            'data-controller': 'grinway-web-app--transition',
+            'data-grinway-web-app--transition-init-shown-value': this.initShown ? 1 : 0,
+            'data-grinway-web-app--transition-will-leave-value': this.willLeave ? 1 : 0,
+            'data-grinway-web-app--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
+            'data-grinway-web-app--transition-style-value': this.style,
+            'data-grinway-web-app--transition-disappear-in-ms-value': this.disappearInMs,
+            'data-grinway-web-app--transition-hidden-class-value': this.hiddenClass,
+        }) }}
+>
+
+    {%- block flash -%}
+
+        <div
+                data-turbo-temporary
+                {{ stimulus_target('grinway-web-app--transition', 'element') }}
+        >
+            {% for flashObject in [
+                {
+                    type:     'success',
+                    flashes:  this.flashes[constant('GrinWay\\Service\\Type\\NoteType::NOTICE')],
+                },
+                {
+                    type:     'warning',
+                    flashes:  this.flashes[constant('GrinWay\\Service\\Type\\NoteType::WARNING')],
+                },
+                {
+                    type:     'danger',
+                    flashes:  this.flashes[constant('GrinWay\\Service\\Type\\NoteType::ERROR')],
+                },
+                {
+                    type:     'secondary',
+                    flashes:  this.flashes['secondary'],
+                },
+                {
+                    type:     'primary',
+                    flashes:  this.flashes['rest'],
+                },
+            ] %}
+
+                {%- for flash in flashObject.flashes -%}
+
+                    <div>
+                        {% if flash is iterable %}
+
+                            {% set flashes = flash %}
+                            {%- for flash in flashes -%}
+                                {{ block('alert', '@GrinWayWebApp/flash/_block.html.twig') }}
+                            {%- endfor -%}
+
+                        {% else %}
+
+                            {{ block('alert', '@GrinWayWebApp/flash/_block.html.twig') }}
+
+                        {% endif %}
+                    </div>
+
+                {%- endfor -%}
+
+            {% endfor %}
+        </div>
+
+    {%- endblock -%}
 </div>
