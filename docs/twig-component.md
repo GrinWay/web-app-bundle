@@ -43,7 +43,7 @@ Usage:
         position="sticky"
         <!-- not clear flash from symfony flash bag -->
         <!-- can be highly useful for turbo frames, streams -->
-        <!-- usually you'll use peak={{ true }}" by default -->
+        <!-- usually you'll use peak="{{ true }}" by default -->
         peek="{{ false }}"
 
         <!-- values for "grinway-web-app--transition" stimulus controller -->
