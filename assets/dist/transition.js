@@ -7,38 +7,38 @@ import { useTransition } from './stimulus-use/useTransition.js'
 class default_1 extends Controller {
 
     #isUseTransitionInitialized = false
-    #isProcessEnabled = false
+    #elementReadyToGetProcessed = true
 
     /**
      * Target getter
      */
     get _element() {
-        return this.hasElementTarget ? this.elementTarget : null
+        return this.hasElementTarget ? this.elementTarget : this.element
+    }
+
+    connect() {
+        // even when connect priority has element target
+        this.elementTargetConnected(this._element)
     }
 
     elementTargetConnected(element) {
-        if (this.#initUseTransition()) {
-            this.#isProcessEnabled = true
-            this.#process()
+        if (this.#initUseTransition(element)) {
+            this.#process(element)
         }
     }
 
-    elementTargetDisconnected(element) {
-        this.#isProcessEnabled = false
-    }
-
-    #initUseTransition() {
+    #initUseTransition(element) {
         if (true === this.#isUseTransitionInitialized) {
             return true
         }
 
-        if (null === this._element) {
+        if (!element) {
             return false
         }
 
         useTransition(this, this.styleValue, {
             initShown: this.initShownValue,
-            element: this._element,
+            element,
             hiddenClass: this.hiddenClassValue,
         })
 
@@ -47,10 +47,11 @@ class default_1 extends Controller {
         return true
     }
 
-    async #process() {
-        if (false === this.#isProcessEnabled) {
+    async #process(element) {
+        if (true !== this.#elementReadyToGetProcessed) {
             return
         }
+        this.#elementReadyToGetProcessed = false
 
         if (false === this.initShownValue) {
             setTimeout(() => {
@@ -62,9 +63,13 @@ class default_1 extends Controller {
             setTimeout(async () => {
                 await this.leave()
                 if (true === this.removeAfterLeaveValue) {
-                    this._element?.remove()
+                    element?.remove()
                 }
+                this.#elementReadyToGetProcessed = true
             }, this.disappearInMsValue)
+        } else {
+            // put to stack
+            setTimeout(() => this.#elementReadyToGetProcessed = true, 0)
         }
     }
 }
@@ -72,7 +77,7 @@ class default_1 extends Controller {
 default_1.values = {
     initShown: {
         type: Boolean,
-        default: true,
+        default: false,
     },
     willLeave: {
         type: Boolean,

@@ -17,7 +17,9 @@ Usage:
         <!-- stimulus controller -->
         data-controller="grinway-web-app--transition"
         
-        <!-- Required "element" target (what element you want to apply transition to?) -->
+        <!-- Optional "element" target (what element you want to apply transition to?) -->
+        <!-- Has priority over controller element -->
+        <!-- If not passed controller element is used -->
         data-grinway-web-app--transition-target="element"
 
         <!-- Optional value -->

@@ -23,12 +23,13 @@ Usage:
         <!-- "top", "sticky", "absolute", "normal" -->
         position="sticky"
 
-        <!-- values for "grinway-web-app--transition" stimulus controller -->
+        <!-- values for "grinway-web-app--transition" stimulus controller (default values are shown) -->
         initShown="{{ false }}"
         willLeave="{{ true }}"
         removeAfterLeave="{{ true }}"
         style="fade"
-        disappearInMs="5000"
+        disappearInMs="10000"
+        hiddenClass="d-none"
 >Hello Grinway Alert</twig:grinway:Alert>
 ```
 
@@ -39,6 +40,9 @@ Usage:
 <!-- twig template -->
 
 <twig:grinway:Flash
+        <!-- Don't forget to INCREASE Z-INDEX if you don't see flashes -->
+        class="z-3"
+    
         <!-- "top", "sticky", "absolute", "normal" -->
         position="sticky"
         <!-- not clear flash from symfony flash bag -->
@@ -46,12 +50,13 @@ Usage:
         <!-- usually you'll use peak={{ true }}" by default -->
         peek="{{ false }}"
 
-        <!-- values for "grinway-web-app--transition" stimulus controller -->
+        <!-- values for "grinway-web-app--transition" stimulus controller (default values are shown) -->
         initShown="{{ false }}"
-        willLeave="{{ false }}"
+        willLeave="{{ true }}"
         removeAfterLeave="{{ true }}"
         style="fade"
-        disappearInMs="1000"
+        disappearInMs="10000"
+        hiddenClass="d-none"
 />
 ```
 
