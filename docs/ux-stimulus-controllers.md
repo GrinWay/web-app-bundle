@@ -1,7 +1,7 @@
 UX stimulus controllers
 ------
 
-### `grinway-web-app--transition`
+### `grinway--transition`
 
 Description:
 
@@ -15,26 +15,26 @@ Usage:
 <!-- it's a twig template -->
 <div
         <!-- stimulus controller -->
-        data-controller="grinway-web-app--transition"
+        data-controller="grinway--transition"
         
         <!-- Optional "element" target (what element you want to apply transition to?) -->
         <!-- Has priority over controller element -->
         <!-- If not passed controller element is used -->
-        data-grinway-web-app--transition-target="element"
+        data-grinway--transition-target="element"
 
         <!-- Optional value -->
-        data-grinway-web-app--transition-init-shown-value="{{ true }}"
+        data-grinway--transition-init-shown-value="{{ true }}"
         <!-- Optional value -->
         <!-- "fade", "slide", "flash", "rotate" (see "@grinway/web-app-bundle/dist/style/transition.css") -->
-        data-grinway-web-app--transition-style-value="fade"
+        data-grinway--transition-style-value="fade"
         <!-- Optional value -->
-        data-grinway-web-app--transition-disappear-in-ms-value="1000"
+        data-grinway--transition-disappear-in-ms-value="1000"
         <!-- Optional value -->
-        data-grinway-web-app--transition-will-leave-value="{{ true }}"
+        data-grinway--transition-will-leave-value="{{ true }}"
         <!-- Optional value -->
-        data-grinway-web-app--transition-remove-after-leave-value="{{ true }}"
+        data-grinway--transition-remove-after-leave-value="{{ true }}"
         <!-- Optional value -->
-        data-grinway-web-app--transition-hidden-class-value="d-none"
+        data-grinway--transition-hidden-class-value="d-none"
 >
     This element will be smoothly "faded" and removed in 1 second
 </div>

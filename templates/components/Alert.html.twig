@@ -53,14 +53,14 @@
 
         {{ attributes.defaults({
             role: 'alert',
-            'data-controller': 'grinway-web-app--transition',
-            'data-grinway-web-app--transition-target': 'element',
-            'data-grinway-web-app--transition-init-shown-value': this.initShown ? 1 : 0,
-            'data-grinway-web-app--transition-style-value': this.style,
-            'data-grinway-web-app--transition-disappear-in-ms-value': this.disappearInMs,
-            'data-grinway-web-app--transition-will-leave-value': this.willLeave ? 1 : 0,
-            'data-grinway-web-app--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
-            'data-grinway-web-app--transition-hidden-class-value': this.hiddenClass,
+            'data-controller': 'grinway--transition',
+            'data-grinway--transition-target': 'element',
+            'data-grinway--transition-init-shown-value': this.initShown ? 1 : 0,
+            'data-grinway--transition-style-value': this.style,
+            'data-grinway--transition-disappear-in-ms-value': this.disappearInMs,
+            'data-grinway--transition-will-leave-value': this.willLeave ? 1 : 0,
+            'data-grinway--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
+            'data-grinway--transition-hidden-class-value': this.hiddenClass,
         }) }}
 >
     {%- block content -%}

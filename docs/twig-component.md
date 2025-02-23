@@ -23,7 +23,7 @@ Usage:
         <!-- "top", "sticky", "absolute", "normal" -->
         position="sticky"
 
-        <!-- values for "grinway-web-app--transition" stimulus controller (default values are shown) -->
+        <!-- values for "grinway--transition" stimulus controller (default values are shown) -->
         initShown="{{ false }}"
         willLeave="{{ true }}"
         removeAfterLeave="{{ true }}"
@@ -50,7 +50,7 @@ Usage:
         <!-- usually you'll use peak="{{ true }}" by default -->
         peek="{{ false }}"
 
-        <!-- values for "grinway-web-app--transition" stimulus controller (default values are shown) -->
+        <!-- values for "grinway--transition" stimulus controller (default values are shown) -->
         initShown="{{ false }}"
         willLeave="{{ true }}"
         removeAfterLeave="{{ true }}"

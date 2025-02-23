@@ -2,18 +2,25 @@
     "name": "@grinway/web-app",
     "description": "Most common stimulus controllers",
     "license": "MIT",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "scripts": {},
     "symfony": {
         "controllers": {
             "transition": {
                 "main": "dist/transition.js",
-                "name": "grinway-web-app--transition",
+                "name": "grinway--transition",
                 "webpackMode": "eager",
                 "fetch": "eager",
                 "autoimport": {
                     "@grinway/web-app-bundle/dist/style/transition.css": true
                 },
+                "enabled": true
+            },
+            "copy": {
+                "main": "dist/copy.js",
+                "name": "grinway--copy",
+                "webpackMode": "eager",
+                "fetch": "eager",
                 "enabled": true
             }
         },

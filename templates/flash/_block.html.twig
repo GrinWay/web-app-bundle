@@ -1,5 +1,5 @@
 {%- block alert -%}
-    {# because flash uses the same "grinway-web-app--transition" stimulus controller to hide itself initShown: true, willLeave: false #}
+    {# because flash uses the same "grinway--transition" stimulus controller to hide itself initShown: true, willLeave: false #}
     <twig:grinway:Alert
             {{ ...attributes.nested('alert').defaults({
                 type: flashObject.type,
