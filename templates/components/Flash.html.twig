@@ -3,7 +3,7 @@
 {%- set class_cva = cva({
     'this.base': this.base,
     variants: {
-        'this.position': {
+        position: {
             fixed: 'position-fixed top-0 end-0 start-0',
             sticky: 'position-sticky top-0 end-0 start-0',
             absolute: 'position-absolute top-0 end-0 start-0',
@@ -14,7 +14,7 @@
 
 <div
         class="{{ class_cva.apply({
-            'this.position': this.position,
+            position: this.position,
         }, attributes.render('class')) }}"
 
         {{ attributes.defaults({
@@ -32,7 +32,7 @@
 
         <div
                 data-turbo-temporary
-                {{ stimulus_target('grinway--transition', 'element') }}
+{#                {{ stimulus_target('grinway--transition', 'element') }}#}
         >
             {% for flashObject in [
                 {
@@ -64,12 +64,12 @@
 
                             {% set flashes = flash %}
                             {%- for flash in flashes -%}
-                                {{ block('alert', '@GrinWayWebApp/flash/_block.html.twig') }}
+                                {% include '@GrinWayWebApp/flash/_block.html.twig' with { size: this.size } %}
                             {%- endfor -%}
 
                         {% else %}
 
-                            {{ block('alert', '@GrinWayWebApp/flash/_block.html.twig') }}
+                            {% include '@GrinWayWebApp/flash/_block.html.twig' with { size: this.size } %}
 
                         {% endif %}
                     </div>

@@ -3,7 +3,7 @@
 {% set class = cva({
     base: this.base,
     variants: {
-        'this.type': {
+        type: {
             primary: 'alert-primary',
             secondary: 'alert-secondary',
             success: 'alert-success',
@@ -13,18 +13,18 @@
             light: 'alert-light',
             dark: 'alert-dark',
         },
-        'this.alignment': {
+        alignment: {
             left: 'text-left',
             center: 'text-center',
             right: 'text-right',
         },
-        'this.size': {
-            lg: 'font-size-lg',
-            md: 'font-size-md',
+        size: {
+            lg: 'fs-3',
+            md: 'fs-6',
             sm: 'small',
             normal: '',
         },
-        'this.position': {
+        position: {
             top: 'position-absolute top-0 start-0 end-0',
             sticky: 'position-sticky top-0 start-0 end-0',
             absolute: 'position-absolute top-0 end-0 start-0',
@@ -33,11 +33,11 @@
     },
     compoundVariants: [
         {
-            'this.type': ['danger', 'warning'],
-            class: 'h5',
+            type: ['danger', 'warning'],
+            class: '',
         },
         {
-            'this.size': ['sm'],
+            size: ['sm'],
             class: 'p-2',
         },
     ],
@@ -45,10 +45,10 @@
 
 <div
         class="{{- class.apply({
-            'this.type': this.type,
-            'this.size': this.size,
-            'this.alignment': this.alignment,
-            'this.position': this.position,
+            type: this.type,
+            size: this.size,
+            alignment: this.alignment,
+            position: this.position,
         }, attributes.render('class')) -}}"
 
         {{ attributes.defaults({

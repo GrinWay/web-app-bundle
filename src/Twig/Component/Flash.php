@@ -15,6 +15,7 @@ class Flash
 
     public string $base = '';
     public string $position = 'fixed';
+    public string $size = 'normal';
 
     public bool $initShown = false;
     public bool $willLeave = true;
@@ -32,7 +33,6 @@ class Flash
         $flashBag = $session->getBag('flashes');
 
         if (true === $peek) {
-            \dump('ONLY PEAK');
             $flashes = $flashBag->peekAll();
         } else {
             $flashes = $flashBag->all();

@@ -1,14 +1,12 @@
-{%- block alert -%}
-    {# because flash uses the same "grinway--transition" stimulus controller to hide itself initShown: true, willLeave: false #}
-    <twig:grinway:Alert
-            {{ ...attributes.nested('alert').defaults({
-                type: flashObject.type,
-                position: 'normal',
-                initShown: true,
-                willLeave: false,
-                class: 'z-3',
-            }) }}
-    >
-        {{- flash -}}
-    </twig:grinway:Alert>
-{%- endblock -%}
+<twig:grinway:Alert
+        {{ ...attributes.nested('alert').defaults({
+            type: flashObject.type,
+            position: 'normal',
+            initShown: true,
+            willLeave: false,
+            class: 'z-3',
+            size,
+        }) }}
+>
+    {{- flash -}}
+</twig:grinway:Alert>

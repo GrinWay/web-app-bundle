@@ -53,24 +53,26 @@ class default_1 extends Controller {
         }
         this.#elementReadyToGetProcessed = false
 
-        if (false === this.initShownValue) {
-            setTimeout(() => {
-                this.enter()
-            }, 100)
-        }
+        requestAnimationFrame(() => {
+            if (false === this.initShownValue) {
+                setTimeout(() => {
+                    this.enter()
+                }, 100)
+            }
 
-        if (true === this.willLeaveValue) {
-            setTimeout(async () => {
-                await this.leave()
-                if (true === this.removeAfterLeaveValue) {
-                    element?.remove()
-                }
-                this.#elementReadyToGetProcessed = true
-            }, this.disappearInMsValue)
-        } else {
-            // put to stack
-            setTimeout(() => this.#elementReadyToGetProcessed = true, 0)
-        }
+            if (true === this.willLeaveValue) {
+                setTimeout(async () => {
+                    await this.leave()
+                    if (true === this.removeAfterLeaveValue) {
+                        element?.remove()
+                    }
+                    this.#elementReadyToGetProcessed = true
+                }, this.disappearInMsValue)
+            } else {
+                // put to stack
+                setTimeout(() => this.#elementReadyToGetProcessed = true, 0)
+            }
+        })
     }
 }
 
