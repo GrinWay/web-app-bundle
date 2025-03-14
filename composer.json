@@ -59,9 +59,9 @@
     "guzzlehttp/uri-template": "^1.0",
     "symfony/ux-turbo": "^2.22",
     "symfony/cache": "^7.2|^6",
-    "grinway/service-bundle": "^1.2",
     "symfony/var-dumper": "^7.2|^6",
-    "symfony/ux-twig-component": "^2.22"
+    "symfony/ux-twig-component": "^2.22",
+    "grinway/service-bundle": "^2.0"
   },
   "config": {
     "allow-plugins": {
