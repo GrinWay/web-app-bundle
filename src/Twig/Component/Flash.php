@@ -23,12 +23,16 @@ class Flash
     public string $style = 'fade';
     public int $disappearInMs = 10000;
     public string $hiddenClass = 'd-none';
+    public string $flashKeyPrefix = '';
 
     // for auto filling
     public array $flashes = [];
 
-    public function mount($peek = false, $flashes = null): void
+    public function mount($peek = false, $flashes = null, $flashKeyPrefix = null): void
     {
+        $flashKeyPrefix ??= '';
+        $this->flashKeyPrefix = $flashKeyPrefix;
+
         $session = $this->requestStack->getSession();
         $flashBag = $session->getBag('flashes');
 
@@ -44,10 +48,19 @@ class Flash
                      NoteType::ERROR,
                      'secondary',
                  ] as $key) {
-            $this->flashes[$key] = $flashes[$key] ?? [];
+            $this->flashes[$this->getFlashKeyPrefixed($key)] = $flashes[$key] ?? [];
             unset($flashes[$key]);
         }
 
-        $this->flashes['rest'] = $flashes;
+        $this->flashes[$this->getFlashKeyPrefixed('rest')] = $flashes;
+    }
+
+    public function getFlashKeyPrefixed(int|string $key): string
+    {
+        return \sprintf(
+            '%s%s',
+            $this->flashKeyPrefix,
+            $key,
+        );
     }
 }
