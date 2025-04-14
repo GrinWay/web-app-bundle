@@ -61,7 +61,7 @@
     "symfony/cache": "^7.2|^6",
     "symfony/var-dumper": "^7.2|^6",
     "symfony/ux-twig-component": "^2.22",
-    "grinway/service-bundle": "^3.0"
+    "grinway/service-bundle": "^4"
   },
   "config": {
     "allow-plugins": {

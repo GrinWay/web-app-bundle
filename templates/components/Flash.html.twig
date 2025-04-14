@@ -12,72 +12,76 @@
     },
 }) -%}
 
-<div
-        class="{{ class_cva.apply({
-            position: this.position,
-        }, attributes.render('class')) }}"
+{% if this.flashesNotEmpty %}
 
-        {{ attributes.defaults({
-            'data-controller': 'grinway--transition',
-            'data-grinway--transition-init-shown-value': this.initShown ? 1 : 0,
-            'data-grinway--transition-will-leave-value': this.willLeave ? 1 : 0,
-            'data-grinway--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
-            'data-grinway--transition-style-value': this.style,
-            'data-grinway--transition-disappear-in-ms-value': this.disappearInMs,
-            'data-grinway--transition-hidden-class-value': this.hiddenClass,
-        }) }}
->
+    <div
+            class="{{ class_cva.apply({
+                position: this.position,
+            }, attributes.render('class')) }}"
 
-    {%- block flash -%}
+            {{ attributes.defaults({
+                'data-controller': 'grinway--transition',
+                'data-grinway--transition-init-shown-value': this.initShown ? 1 : 0,
+                'data-grinway--transition-will-leave-value': this.willLeave ? 1 : 0,
+                'data-grinway--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
+                'data-grinway--transition-style-value': this.style,
+                'data-grinway--transition-disappear-in-ms-value': this.disappearInMs,
+                'data-grinway--transition-hidden-class-value': this.hiddenClass,
+                ...this.dopAttributes,
+            }) }}
+    >
 
-        <div
-                data-turbo-temporary
-{#                {{ stimulus_target('grinway--transition', 'element') }}#}
-        >
-            {% for flashObject in [
-                {
-                    type:     'success',
-                    flashes:  this.flashes[this.getFlashKeyPrefixed(constant('GrinWay\\Service\\Type\\NoteType::NOTICE'))],
-                },
-                {
-                    type:     'warning',
-                    flashes:  this.flashes[this.getFlashKeyPrefixed(constant('GrinWay\\Service\\Type\\NoteType::WARNING'))],
-                },
-                {
-                    type:     'danger',
-                    flashes:  this.flashes[this.getFlashKeyPrefixed(constant('GrinWay\\Service\\Type\\NoteType::ERROR'))],
-                },
-                {
-                    type:     'secondary',
-                    flashes:  this.flashes[this.getFlashKeyPrefixed('secondary')],
-                },
-                {
-                    type:     'primary',
-                    flashes:  this.flashes[this.getFlashKeyPrefixed('rest')],
-                },
-            ] %}
+        {%- block flash -%}
 
-                {%- for flash in flashObject.flashes -%}
+            <div
+                    class="h-100 w-100"
+                    data-turbo-temporary
+                    {#                {{ stimulus_target('grinway--transition', 'element') }} #}
+            >
+                {% for flashObject in [
+                    {
+                        type:     'success',
+                        flashes:  this.flashes[this.getFlashKeyPrefixed(constant('GrinWay\\Service\\Type\\NoteType::NOTICE'))],
+                    },
+                    {
+                        type:     'warning',
+                        flashes:  this.flashes[this.getFlashKeyPrefixed(constant('GrinWay\\Service\\Type\\NoteType::WARNING'))],
+                    },
+                    {
+                        type:     'danger',
+                        flashes:  this.flashes[this.getFlashKeyPrefixed(constant('GrinWay\\Service\\Type\\NoteType::ERROR'))],
+                    },
+                    {
+                        type:     'secondary',
+                        flashes:  this.flashes[this.getFlashKeyPrefixed('secondary')],
+                    },
+                    {
+                        type:     'primary',
+                        flashes:  this.flashes[this.getFlashKeyPrefixed('rest')],
+                    },
+                ] %}
 
-                    <div>
+                    {%- for flash in flashObject.flashes -%}
+
                         {% if flash is iterable %}
 
                             {% set flashes = flash %}
                             {%- for flash in flashes -%}
-                                {% include '@GrinWayWebApp/flash/_block.html.twig' with { size: this.size } %}
+                                {% include '@GrinWayWebApp/flash/_block.html.twig' with { size: this.size, dopAttributes: this.alertDopAttributes } %}
                             {%- endfor -%}
 
                         {% else %}
 
-                            {% include '@GrinWayWebApp/flash/_block.html.twig' with { size: this.size } %}
+                            {% include '@GrinWayWebApp/flash/_block.html.twig' with { size: this.size, dopAttributes: this.alertDopAttributes } %}
 
                         {% endif %}
-                    </div>
 
-                {%- endfor -%}
+                    {%- endfor -%}
 
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
 
-    {%- endblock -%}
-</div>
+        {%- endblock -%}
+    </div>
+
+{% endif %}

@@ -111,5 +111,27 @@ $utilities: map-merge(
             responsive: true,
           ),
       ),
+      "top": (
+        property: top,
+        values: $position-negative-values,
+        responsive: true,
+      ),
+      "bottom": (
+        property: bottom,
+        values: $position-negative-values,
+        responsive: true,
+      ),
+      "start": (
+        property: left,
+        class: start,
+        values: $position-negative-values,
+        responsive: true,
+      ),
+      "end": (
+        property: right,
+        class: end,
+        values: $position-negative-values,
+        responsive: true,
+      ),
     ),
 );

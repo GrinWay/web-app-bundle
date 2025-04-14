@@ -9,6 +9,7 @@ class Alert
     public string $size = 'sm';
     public string $alignment = 'left';
     public string $position = 'fixed';
+    public array $dopAttributes = [];
 
     public bool $initShown = false;
     public bool $willLeave = true;

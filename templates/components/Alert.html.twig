@@ -61,9 +61,8 @@
             'data-grinway--transition-will-leave-value': this.willLeave ? 1 : 0,
             'data-grinway--transition-remove-after-leave-value': this.removeAfterLeave ? 1 : 0,
             'data-grinway--transition-hidden-class-value': this.hiddenClass,
+            ...this.dopAttributes,
         }) }}
 >
-    {%- block content -%}
-        EMPTY ALERT
-    {%- endblock content -%}
+    {%- block content -%}{%- endblock content -%}
 </div>

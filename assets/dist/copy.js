@@ -4,9 +4,9 @@ import { Controller } from '@hotwired/stimulus'
  * takes text from data-source="" attribute
  * or if undefined event.currentTarget.innerText
  */
-class default_1 extends Controller {
+class Copy extends Controller {
     get highPrioritySource() {
-        return this.element.dataset.source
+        return '' === this.sourceValue ? this.element.dataset.source : this.sourceValue
     }
 
     copy(event) {
@@ -17,11 +17,20 @@ class default_1 extends Controller {
 
         navigator.clipboard.writeText(source)
 
-        this.dispatch('copied', { prefix: 'grinway', bubbles: true })
+        this.dispatch('copied', {
+            prefix: 'grinway', bubbles: true, detail: {
+                copied: source,
+            }
+        })
     }
 }
 
-default_1.values = {}
-default_1.targets = []
+Copy.values = {
+    source: {
+        type: String,
+        default: '',
+    },
+}
+Copy.targets = []
 
-export { default_1 as default }
+export { Copy as default }

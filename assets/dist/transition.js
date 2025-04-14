@@ -4,7 +4,7 @@ import { useTransition } from './stimulus-use/useTransition.js'
 /**
  *
  */
-class default_1 extends Controller {
+class Transition extends Controller {
 
     #isUseTransitionInitialized = false
     #elementReadyToGetProcessed = true
@@ -55,28 +55,32 @@ class default_1 extends Controller {
 
         requestAnimationFrame(() => {
             if (false === this.initShownValue) {
-                setTimeout(() => {
-                    this.enter()
-                }, 100)
+                setTimeout(this.show.bind(this), 100)
             }
 
             if (true === this.willLeaveValue) {
-                setTimeout(async () => {
-                    await this.leave()
-                    if (true === this.removeAfterLeaveValue) {
-                        element?.remove()
-                    }
-                    this.#elementReadyToGetProcessed = true
-                }, this.disappearInMsValue)
+                setTimeout(() => this.hide(element), this.disappearInMsValue)
             } else {
                 // put to stack
                 setTimeout(() => this.#elementReadyToGetProcessed = true, 0)
             }
         })
     }
+
+    async hide(element) {
+        await this.leave()
+        if (element && true === this.removeAfterLeaveValue) {
+            element?.remove()
+        }
+        this.#elementReadyToGetProcessed = true
+    }
+
+    show(event) {
+        this.enter()
+    }
 }
 
-default_1.values = {
+Transition.values = {
     initShown: {
         type: Boolean,
         default: false,
@@ -103,8 +107,8 @@ default_1.values = {
     },
 }
 
-default_1.targets = [
+Transition.targets = [
     'element',
 ]
 
-export { default_1 as default }
+export { Transition as default }

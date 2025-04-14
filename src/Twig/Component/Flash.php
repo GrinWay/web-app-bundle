@@ -23,12 +23,20 @@ class Flash
     public string $style = 'fade';
     public int $disappearInMs = 10000;
     public string $hiddenClass = 'd-none';
+
     public string $flashKeyPrefix = '';
+    public array $dopAttributes = [];
+    public array $alertDopAttributes = [];
+    public bool $flashesNotEmpty = false;
 
     // for auto filling
     public array $flashes = [];
 
-    public function mount($peek = false, $flashes = null, $flashKeyPrefix = null): void
+    public function mount(
+        bool $peek = false,
+        ?array $flashes = null,
+        ?string $flashKeyPrefix = null,
+    ): void
     {
         $flashKeyPrefix ??= '';
         $this->flashKeyPrefix = $flashKeyPrefix;
@@ -40,6 +48,10 @@ class Flash
             $flashes = $flashBag->peekAll();
         } else {
             $flashes = $flashBag->all();
+        }
+
+        if (!empty($flashes)) {
+            $this->flashesNotEmpty = true;
         }
 
         foreach ([
