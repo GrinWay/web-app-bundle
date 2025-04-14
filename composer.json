@@ -1,7 +1,7 @@
 {
   "name": "grinway/web-app-bundle",
   "type": "symfony-bundle",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Commonly used tools for particularly a web symfony app",
   "keywords": [
     "grinway",
