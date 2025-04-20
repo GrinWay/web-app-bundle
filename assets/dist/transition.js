@@ -55,7 +55,7 @@ class Transition extends Controller {
 
         requestAnimationFrame(() => {
             if (false === this.initShownValue) {
-                setTimeout(this.show.bind(this), 100)
+                setTimeout(this.show.bind(this), this.showDelayMsValue)
             }
 
             if (true === this.willLeaveValue) {
@@ -100,6 +100,10 @@ Transition.values = {
     disappearInMs: {
         type: Number,
         default: 3000,
+    },
+    showDelayMs: {
+        type: Number,
+        default: 100,
     },
     hiddenClass: {
         type: String,
